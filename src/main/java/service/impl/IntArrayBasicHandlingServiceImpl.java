@@ -1,4 +1,4 @@
-package service.Impl;
+package service.impl;
 
 import entity.DecimalNumber;
 import entity.IntArray;

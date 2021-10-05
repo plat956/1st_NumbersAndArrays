@@ -1,4 +1,4 @@
-package service.Impl;
+package service.impl;
 
 import entity.IntArray;
 import org.testng.annotations.BeforeMethod;

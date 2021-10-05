@@ -1,18 +1,13 @@
-package service.Impl;
+package service.impl;
 
 import entity.IntArray;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import service.IntArraySortingService;
+import service.basis.IntArraySortingBasisService;
 
-public class IntArraySortingServiceImpl implements IntArraySortingService {
+public class IntArraySortingServiceImpl extends IntArraySortingBasisService implements IntArraySortingService {
     private static final Logger logger = LogManager.getLogger();
-
-    private void swap(IntArray array, int index1, int index2) {
-        int temp = array.getElement(index1);
-        array.setElement(index1, array.getElement(index2));
-        array.setElement(index2, temp);
-    }
 
     @Override
     public IntArray bubbleSort(IntArray array) {

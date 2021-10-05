@@ -17,18 +17,29 @@ import static java.util.stream.Collectors.toList;
 
 public class DataReader {
     private static final Logger logger = LogManager.getLogger();
-    private static final String DECIMAL_DELIMITER = "\\s+";
 
-    public String[] read(String filePath) throws InputFileReadingException {
+    public List<String> readExtractionsByDelimiter(String filePath, String delimiter) throws InputFileReadingException {
+        return read(filePath, delimiter);
+    }
+
+    public List<String> readLines(String filePath) throws InputFileReadingException {
+        return read(filePath, null);
+    }
+
+    private List<String> read(String filePath, String delimiter) throws InputFileReadingException {
         logger.info("Reading the \"{}\" file", filePath);
         File file = new File(filePath);
 
-        String[] result = {};
+        List<String> result = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] lineChunks = line.split(DECIMAL_DELIMITER);
-                result = Stream.concat(Arrays.stream(result), Arrays.stream(lineChunks)).toArray(String[]::new);
+                if(delimiter != null) {
+                    String[] lineChunks = line.split(delimiter);
+                    result.addAll(Arrays.stream(lineChunks).toList());
+                } else {
+                    result.add(line);
+                }
             }
         } catch (IOException ex) {
             throw new InputFileReadingException("That's impossible to read from file: " + filePath, ex);

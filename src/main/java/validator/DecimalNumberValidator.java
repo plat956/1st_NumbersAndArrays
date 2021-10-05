@@ -1,4 +1,4 @@
-package util;
+package validator;
 
 public class DecimalNumberValidator {
     private static final String DECIMAL_PATTERN = "^[-+]?\\d*[.]?\\d+|^[-+]?\\d+[.]?\\d*";

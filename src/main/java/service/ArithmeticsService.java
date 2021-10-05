@@ -3,21 +3,21 @@ package service;
 import entity.DecimalNumber;
 
 public interface ArithmeticsService {
-    public DecimalNumber round(DecimalNumber number, int places);
+    DecimalNumber round(DecimalNumber number, int places);
 
-    public DecimalNumber add(DecimalNumber firstNumber, DecimalNumber secondNumber);
+    DecimalNumber add(DecimalNumber firstNumber, DecimalNumber secondNumber);
 
-    public DecimalNumber add(DecimalNumber... numbers);
+    DecimalNumber add(DecimalNumber... numbers);
 
-    public DecimalNumber sub(DecimalNumber firstNumber, DecimalNumber secondNumber);
+    DecimalNumber sub(DecimalNumber firstNumber, DecimalNumber secondNumber);
 
-    public DecimalNumber sub(DecimalNumber... numbers);
+    DecimalNumber sub(DecimalNumber... numbers);
 
-    public DecimalNumber multiply(DecimalNumber firstNumber, DecimalNumber secondNumber);
+    DecimalNumber multiply(DecimalNumber firstNumber, DecimalNumber secondNumber);
 
-    public DecimalNumber multiply(DecimalNumber... numbers);
+    DecimalNumber multiply(DecimalNumber... numbers);
 
-    public DecimalNumber divide(DecimalNumber firstNumber, DecimalNumber secondNumber);
+    DecimalNumber divide(DecimalNumber firstNumber, DecimalNumber secondNumber);
 
-    public DecimalNumber divide(DecimalNumber... numbers);
+    DecimalNumber divide(DecimalNumber... numbers);
 }

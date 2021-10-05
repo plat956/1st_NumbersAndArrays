@@ -1,34 +1,50 @@
 package util;
 
-import entity.DecimalNumber;
-import exception.DecimalNumberCastingException;
 import exception.InputFileReadingException;
-import factory.DecimalNumberFactory;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.testng.Assert.*;
-import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
 public class DataReaderTest {
-    private static final String FILE_PATH = "src\\test\\resources\\data\\input.txt";
+    private static final String DECIMAL_DELIMITER = "\\s+";
+    private static final String NUMBERS_FILE_PATH = "src\\test\\resources\\data\\numbers.txt";
+    private static final String ARRAY_FILE_PATH = "src\\test\\resources\\data\\array.txt";
+    private DataReader dataReader;
+
+    @BeforeClass
+    void setUp() {
+        dataReader = new DataReader();
+    }
 
     @Test
-    void testRead() {
-        String[] expected = { "-10.2", "5", "5.2", "7.0" };
+    void testReadExtractionsByDelimiter() {
+        List<String> expected = Arrays.asList("-10.2", "5", "5.2", "7.0");
 
-        DataReader dataReader = new DataReader();
-
-        String[] actual = null;
+        List<String> actual = null;
         try {
-            actual = dataReader.read(FILE_PATH);
+            actual = dataReader.readExtractionsByDelimiter(NUMBERS_FILE_PATH, DECIMAL_DELIMITER);
         } catch (InputFileReadingException e) {
             fail("Something went wrong during reading from file", e);
         }
 
-        assertArrayEquals(expected, actual);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testReadLines() {
+        List<String> expected = Arrays.asList("_$sds 05 55", "6 10 -1 15 6", "5. 5 4 3 0");
+
+        List<String> actual = null;
+        try {
+            actual = dataReader.readLines(ARRAY_FILE_PATH);
+        } catch (InputFileReadingException e) {
+            fail("Something went wrong during reading from file", e);
+        }
+
+        assertEquals(expected, actual);
     }
 }
