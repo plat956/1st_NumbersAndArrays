@@ -1,6 +1,6 @@
 package by.latushko.training.reader.impl;
 
-import by.latushko.training.exception.InputFileReadingException;
+import by.latushko.training.exception.InputFileReadException;
 import by.latushko.training.reader.DataReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,15 +18,15 @@ public class DataReaderImpl implements DataReader {
     private static final Logger logger = LogManager.getLogger();
     private static final String SPACE_DELIMITER = "\\s+";
 
-    public List<String> readExtractionsSeparatedBySpace(String filePath) throws InputFileReadingException {
+    public List<String> readExtractionsSeparatedBySpace(String filePath) throws InputFileReadException {
         return read(filePath, SPACE_DELIMITER);
     }
 
-    public List<String> readLines(String filePath) throws InputFileReadingException {
+    public List<String> readLines(String filePath) throws InputFileReadException {
         return read(filePath, null);
     }
 
-    private List<String> read(String filePath, String delimiter) throws InputFileReadingException {
+    private List<String> read(String filePath, String delimiter) throws InputFileReadException {
         logger.info("Reading the \"{}\" file", filePath);
 
         ClassLoader loader = getClass().getClassLoader();
@@ -45,7 +45,7 @@ public class DataReaderImpl implements DataReader {
                 }
             }
         } catch (IOException ex) {
-            throw new InputFileReadingException("That's impossible to read from file: " + filePath, ex);
+            throw new InputFileReadException("That's impossible to read from file: " + filePath, ex);
         }
 
         return result;

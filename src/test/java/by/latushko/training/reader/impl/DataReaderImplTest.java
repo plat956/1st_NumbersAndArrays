@@ -1,6 +1,6 @@
 package by.latushko.training.reader.impl;
 
-import by.latushko.training.exception.InputFileReadingException;
+import by.latushko.training.exception.InputFileReadException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import by.latushko.training.reader.DataReader;
@@ -27,7 +27,7 @@ public class DataReaderImplTest {
         List<String> actual = null;
         try {
             actual = dataReader.readExtractionsSeparatedBySpace(NUMBERS_FILE_PATH);
-        } catch (InputFileReadingException ex) {
+        } catch (InputFileReadException ex) {
             fail("Something went wrong during reading from file", ex);
         }
 
@@ -40,7 +40,7 @@ public class DataReaderImplTest {
         List<String> actual = null;
         try {
             actual = dataReader.readLines(ARRAY_FILE_PATH);
-        } catch (InputFileReadingException ex) {
+        } catch (InputFileReadException ex) {
             fail("Something went wrong during reading from file", ex);
         }
 
