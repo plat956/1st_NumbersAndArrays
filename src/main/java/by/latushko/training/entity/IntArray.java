@@ -1,15 +1,15 @@
 package by.latushko.training.entity;
 
-import by.latushko.training.exception.IntArrayInternalException;
+import by.latushko.training.exception.IntArrayException;
 
 import java.util.Arrays;
 
 public class IntArray {
     private int[] array;
 
-    public IntArray(int size) throws IntArrayInternalException{
+    public IntArray(int size) throws IntArrayException {
         if(size < 0) {
-            throw new IntArrayInternalException("You can't make an array with negative size");
+            throw new IntArrayException("You can't make an array with negative size");
         }
         this.array = new int[size];
     }
@@ -22,16 +22,16 @@ public class IntArray {
         return array.length;
     }
 
-    public int getElement(int index) throws IntArrayInternalException{
+    public int getElement(int index) throws IntArrayException {
         if(!checkIndex(index)) {
-            throw new IntArrayInternalException("Index " + index +   " is wrong");
+            throw new IntArrayException("Index " + index +   " is wrong");
         }
         return array[index];
     }
 
-    public void setElement(int index, int value) throws IntArrayInternalException{
+    public void setElement(int index, int value) throws IntArrayException {
         if(!checkIndex(index)) {
-            throw new IntArrayInternalException("Index " + index +   " is wrong");
+            throw new IntArrayException("Index " + index +   " is wrong");
         }
         array[index] = value;
     }

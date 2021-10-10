@@ -2,7 +2,7 @@ package by.latushko.training.service.impl;
 
 import by.latushko.training.entity.DecimalNumber;
 import by.latushko.training.entity.IntArray;
-import by.latushko.training.exception.IntArrayInternalException;
+import by.latushko.training.exception.IntArrayException;
 import by.latushko.training.factory.DecimalNumberFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
             }
             logger.info("The smallest element of the array {} is {}", array.toString(), min);
             return min;
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
             return 0;
         }
@@ -40,7 +40,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
             }
             logger.info("The biggest element of the array {} is {}", array.toString(), max);
             return max;
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
             return 0;
         }
@@ -52,7 +52,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
             for (int i = 0; i < array.length(); i++) {
                 total += array.getElement(i);
             }
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
         }
         logger.info("Total amount of the array elements {} is {}", array.toString(), total);
@@ -77,7 +77,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                     counter++;
                 }
             }
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
         }
         logger.info("The the array {} contains {} negative elements", array.toString(), counter);
@@ -93,7 +93,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                     counter++;
                 }
             }
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
         }
         logger.info("The the array {} contains {} positive elements", array.toString(), counter);
@@ -108,7 +108,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                     array.setElement(i, number);
                 }
             }
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
         }
         logger.info("All the negative elements of the array {} has been replaced by {}", array.toString(), number);
@@ -123,7 +123,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                     array.setElement(i, number);
                 }
             }
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
         }
         logger.info("Each element is higher than 100 of the array {} has been replaced by {}", array.toString(), number);

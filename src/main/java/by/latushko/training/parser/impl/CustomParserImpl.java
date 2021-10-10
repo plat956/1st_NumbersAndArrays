@@ -4,7 +4,7 @@ package by.latushko.training.parser.impl;
 import by.latushko.training.entity.DecimalNumber;
 import by.latushko.training.entity.IntArray;
 import by.latushko.training.exception.DecimalNumberParseException;
-import by.latushko.training.exception.IntArrayInternalException;
+import by.latushko.training.exception.IntArrayException;
 import by.latushko.training.exception.IntArrayParseException;
 import by.latushko.training.factory.DecimalNumberFactory;
 import org.apache.logging.log4j.LogManager;
@@ -39,14 +39,14 @@ public class CustomParserImpl implements CustomParser {
         IntArray array = null;
         try {
             array = new IntArray(lineChunks.length);
-        } catch (IntArrayInternalException e) {
+        } catch (IntArrayException e) {
             throw new IntArrayParseException(e);
         }
 
         for (int i = 0; i < lineChunks.length; i++) {
             try {
                 array.setElement(i, Integer.parseInt(lineChunks[i]));
-            } catch (IntArrayInternalException e) {
+            } catch (IntArrayException e) {
                 throw new IntArrayParseException(e);
             }
         }

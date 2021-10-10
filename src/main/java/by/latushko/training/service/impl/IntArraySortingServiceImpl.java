@@ -1,7 +1,7 @@
 package by.latushko.training.service.impl;
 
 import by.latushko.training.entity.IntArray;
-import by.latushko.training.exception.IntArrayInternalException;
+import by.latushko.training.exception.IntArrayException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import by.latushko.training.service.IntArraySortingService;
@@ -19,7 +19,7 @@ public class IntArraySortingServiceImpl extends IntArrayCommonSortingService imp
                     if (array.getElement(j) > array.getElement(j + 1)) {
                         swap(array, j, j + 1);
                     }
-                } catch (IntArrayInternalException ex) {
+                } catch (IntArrayException ex) {
                     //todo
                 }
             }
@@ -40,7 +40,7 @@ public class IntArraySortingServiceImpl extends IntArrayCommonSortingService imp
                     }
                 }
                 swap(array, left, minInd);
-            } catch (IntArrayInternalException ex) {
+            } catch (IntArrayException ex) {
                 //todo
             }
         }
@@ -62,7 +62,7 @@ public class IntArraySortingServiceImpl extends IntArrayCommonSortingService imp
                 }
                 array.setElement(i + 1, key);
             }
-        } catch (IntArrayInternalException ex) {
+        } catch (IntArrayException ex) {
             //todo
         }
         logger.info("Sorted array by insertion algorithm is: {}", array.toString());
