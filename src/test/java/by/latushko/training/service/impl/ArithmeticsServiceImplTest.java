@@ -12,12 +12,12 @@ public class ArithmeticsServiceImplTest {
     private ArithmeticsService arithmeticsService;
 
     @BeforeClass
-    void setUp() {
+    public void setUp() {
         arithmeticsService = new ArithmeticsServiceImpl();
     }
 
     @Test
-    void testAdd() {
+    public void testAdd() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(7.55);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(5.22);
@@ -28,7 +28,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testAddMultiple() {
+    public void testAddMultiple() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(118.14);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(1.17);
@@ -41,7 +41,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testDivide() {
+    public void testDivide() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(2.71);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(5.42);
@@ -52,7 +52,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testDivideMultiple() {
+    public void testDivideMultiple() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(-0.1);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(4.40);
@@ -65,7 +65,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testDivideInfinity() {
+    public void testDivideInfinity() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(Double.POSITIVE_INFINITY);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(5.42);
@@ -76,7 +76,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testMultiply() {
+    public void testMultiply() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(12.2325);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(5.25);
@@ -87,7 +87,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testMultiplyMultiple() {
+    public void testMultiplyMultiple() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(-20.84285);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(3.10);
@@ -100,7 +100,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testSub() {
+    public void testSub() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(2.92);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(5.25);
@@ -111,7 +111,7 @@ public class ArithmeticsServiceImplTest {
     }
 
     @Test
-    void testSubMultiple() {
+    public void testSubMultiple() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(3.93);
 
         DecimalNumber firstNumber = DecimalNumberFactory.produceNumber(1.10);

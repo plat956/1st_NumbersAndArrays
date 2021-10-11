@@ -11,18 +11,18 @@ public class DecimalNumberValidatorTest {
     private CustomValidator decimalNumberValidator;
 
     @BeforeClass
-    void setUp() {
+    public void setUp() {
         decimalNumberValidator = new DecimalNumberValidator();
     }
 
     @Test
-    void testValidateTrue() {
+    public void testValidateTrue() {
         boolean actual = decimalNumberValidator.validate("5.78");
         assertTrue(actual);
     }
 
     @Test
-    void testValidateFalse() {
+    public void testValidateFalse() {
         boolean actual = decimalNumberValidator.validate("dd43c.78");
         assertFalse(actual);
     }

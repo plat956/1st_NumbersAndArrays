@@ -9,17 +9,17 @@ import by.latushko.training.service.IntArraySortingService;
 import static org.testng.Assert.*;
 
 public class IntArraySortingServiceImplTest {
-    IntArraySortingService intArraySortingService;
-    IntArray actual;
-    IntArray expected;
+    private IntArraySortingService intArraySortingService;
+    private IntArray actual;
+    private IntArray expected;
 
     @BeforeClass
-    void setUpClass(){
+    public void setUpClass(){
         intArraySortingService = new IntArraySortingServiceImpl();
     }
 
     @BeforeMethod
-    void setUpMethod() {
+    public void setUpMethod() {
         actual = new IntArray(10, 20, 5, -3, 0, 99, 1, 11, 4, 7, 64);
         expected = new IntArray(-3, 0, 1, 4, 5, 7, 10, 11, 20, 64, 99);
     }

@@ -11,18 +11,18 @@ public class NumberSequenceValidatorTest {
     private CustomValidator numberSequenceValidator;
 
     @BeforeClass
-    void setUp() {
+    public void setUp() {
         numberSequenceValidator = new NumberSequenceValidator();
     }
 
     @Test
-    void testValidateTrue() {
+    public void testValidateTrue() {
         boolean actual = numberSequenceValidator.validate("4334 34 -10");
         assertTrue(actual);
     }
 
     @Test
-    void testValidateFalse() {
+    public void testValidateFalse() {
         boolean actual = numberSequenceValidator.validate("4334d 34 -10");
         assertFalse(actual);
     }

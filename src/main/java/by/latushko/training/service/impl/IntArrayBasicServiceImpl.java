@@ -4,15 +4,18 @@ import by.latushko.training.entity.DecimalNumber;
 import by.latushko.training.entity.IntArray;
 import by.latushko.training.exception.IntArrayException;
 import by.latushko.training.factory.DecimalNumberFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import by.latushko.training.service.ArithmeticsService;
 import by.latushko.training.service.IntArrayBasicService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
+import java.util.OptionalInt;
 
 public class IntArrayBasicServiceImpl implements IntArrayBasicService {
     private static final Logger logger = LogManager.getLogger();
 
-    public int findMin(IntArray array) {
+    public OptionalInt findMin(IntArray array) {
         try {
             int min = array.getElement(0);
             for (int i = 1; i < array.length(); i++) {
@@ -22,14 +25,14 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                 }
             }
             logger.info("The smallest element of the array {} is {}", array.toString(), min);
-            return min;
+            return OptionalInt.of(min);
         } catch (IntArrayException ex) {
-            //todo
-            return 0;
+            logger.error("Impossible to determine the smallest element of the array {} because of elements access failed", array.toString(), ex);
+            return OptionalInt.empty();
         }
     }
 
-    public int findMax(IntArray array) {
+    public OptionalInt findMax(IntArray array) {
         try {
             int max = array.getElement(0);
             for (int i = 1; i < array.length(); i++) {
@@ -39,10 +42,10 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                 }
             }
             logger.info("The biggest element of the array {} is {}", array.toString(), max);
-            return max;
+            return OptionalInt.of(max);
         } catch (IntArrayException ex) {
-            //todo
-            return 0;
+            logger.error("Impossible to determine the biggest element of the array {} because of elements access failed", array.toString(), ex);
+            return OptionalInt.empty();
         }
     }
 
@@ -53,7 +56,7 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                 total += array.getElement(i);
             }
         } catch (IntArrayException ex) {
-            //todo
+            total = 0;
         }
         logger.info("Total amount of the array elements {} is {}", array.toString(), total);
         return total;
@@ -68,8 +71,8 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
         return average;
     }
 
-    public int countNegativeValues(IntArray array) {
-        int counter = 0;
+    public long countNegativeValues(IntArray array) {
+        long counter = 0L;
         try {
             for (int i = 0; i < array.length(); i++) {
                 int currentElem = array.getElement(i);
@@ -78,14 +81,14 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                 }
             }
         } catch (IntArrayException ex) {
-            //todo
+            counter = 0L;
         }
         logger.info("The the array {} contains {} negative elements", array.toString(), counter);
         return counter;
     }
 
-    public int countPositiveValues(IntArray array) {
-        int counter = 0;
+    public long countPositiveValues(IntArray array) {
+        long counter = 0L;
         try {
             for (int i = 0; i < array.length(); i++) {
                 int currentElem = array.getElement(i);
@@ -94,40 +97,44 @@ public class IntArrayBasicServiceImpl implements IntArrayBasicService {
                 }
             }
         } catch (IntArrayException ex) {
-            //todo
+            counter = 0L;
         }
         logger.info("The the array {} contains {} positive elements", array.toString(), counter);
         return counter;
     }
 
-    public IntArray replaceNegativeElementsTo(IntArray array, int number) {
+    public Optional<IntArray> replaceNegativeElementsTo(IntArray array, int number) {
+        IntArray copiedArray = new IntArray(array.getInternalArray());
         try {
-            for (int i = 0; i < array.length(); i++) {
-                int currentElem = array.getElement(i);
+            for (int i = 0; i < copiedArray.length(); i++) {
+                int currentElem = copiedArray.getElement(i);
                 if (currentElem < 0) {
-                    array.setElement(i, number);
+                    copiedArray.setElement(i, number);
                 }
             }
+            logger.info("All the negative elements of the array {} has been replaced by {}", copiedArray.toString(), number);
+            return Optional.of(copiedArray);
         } catch (IntArrayException ex) {
-            //todo
+            logger.error("Impossible to do replacement in the array {} because of elements access failed", array.toString(), ex);
+            return Optional.empty();
         }
-        logger.info("All the negative elements of the array {} has been replaced by {}", array.toString(), number);
-        return array;
     }
 
-    public IntArray replaceHigherThan100ElementsTo(IntArray array, int number) {
+    public Optional<IntArray> replaceHigherThan100ElementsTo(IntArray array, int number) {
+        IntArray copiedArray = new IntArray(array.getInternalArray());
         try {
-            for (int i = 0; i < array.length(); i++) {
-                int currentElem = array.getElement(i);
+            for (int i = 0; i < copiedArray.length(); i++) {
+                int currentElem = copiedArray.getElement(i);
                 if (currentElem > 100) {
-                    array.setElement(i, number);
+                    copiedArray.setElement(i, number);
                 }
             }
+            logger.info("Each element is higher than 100 of the array {} has been replaced by {}", copiedArray.toString(), number);
+            return Optional.of(copiedArray);
         } catch (IntArrayException ex) {
-            //todo
+            logger.error("Impossible to do replacement in the array {} because of elements access failed", array.toString(), ex);
+            return Optional.empty();
         }
-        logger.info("Each element is higher than 100 of the array {} has been replaced by {}", array.toString(), number);
-        return array;
     }
 
 }

@@ -16,12 +16,12 @@ public class CustomParserImplTest {
     private CustomParser customParser;
 
     @BeforeClass
-    void setUp() {
+    public void setUp() {
         customParser = new CustomParserImpl();
     }
 
     @Test
-    void testParseDecimalNumber() {
+    public void testParseDecimalNumber() {
         DecimalNumber expected = DecimalNumberFactory.produceNumber(-200.95);
         DecimalNumber actual = null;
         try {
@@ -33,8 +33,13 @@ public class CustomParserImplTest {
         assertEquals(expected, actual);
     }
 
+    @Test(expectedExceptions = DecimalNumberParseException.class)
+    public void testParseDecimalNumberException() throws DecimalNumberParseException {
+        customParser.parseDecimalNumber("d3b.95");
+    }
+
     @Test
-    void testParseIntArray() {
+    public void testParseIntArray() {
         IntArray expected = new IntArray(5, -9, 0, 12);
         IntArray actual = null;
         try {

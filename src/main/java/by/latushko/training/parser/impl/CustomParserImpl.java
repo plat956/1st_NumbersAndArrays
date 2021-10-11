@@ -24,7 +24,7 @@ public class CustomParserImpl implements CustomParser {
             logger.error("Line \"{}\" contains invalid characters for DecimalNumber casting", unCasted);
             throw new DecimalNumberParseException("That's impossible to cast " + unCasted + " to DecimalNumber class");
         }
-        double tempNumber = Double.valueOf(unCasted);
+        double tempNumber = Double.parseDouble(unCasted);
         return DecimalNumberFactory.produceNumber(tempNumber);
     }
 
@@ -40,15 +40,17 @@ public class CustomParserImpl implements CustomParser {
         try {
             array = new IntArray(lineChunks.length);
         } catch (IntArrayException e) {
+            logger.error("Can't produce an array with length: {}", lineChunks.length, e);
             throw new IntArrayParseException(e);
         }
 
-        for (int i = 0; i < lineChunks.length; i++) {
-            try {
+        try {
+            for (int i = 0; i < lineChunks.length; i++) {
                 array.setElement(i, Integer.parseInt(lineChunks[i]));
-            } catch (IntArrayException e) {
-                throw new IntArrayParseException(e);
             }
+        } catch (IntArrayException e) {
+            logger.error("Can't modify array elements: {}", array.toString(), e);
+            throw new IntArrayParseException(e);
         }
         return array;
     }

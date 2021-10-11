@@ -31,6 +31,11 @@ public class DataReaderImpl implements DataReader {
 
         ClassLoader loader = getClass().getClassLoader();
         URL resource = loader.getResource(filePath);
+        if(resource == null) {
+            logger.error("Path {} doesn't exist", filePath);
+            throw new InputFileReadException("Path " + filePath + " doesn't exist");
+        }
+
         File file = new File(resource.getFile());
 
         List<String> result = new ArrayList<>();
@@ -45,6 +50,7 @@ public class DataReaderImpl implements DataReader {
                 }
             }
         } catch (IOException ex) {
+            logger.error("Error reading from file: {}", filePath, ex);
             throw new InputFileReadException("That's impossible to read from file: " + filePath, ex);
         }
 

@@ -5,39 +5,43 @@ import by.latushko.training.exception.IntArrayException;
 import java.util.Arrays;
 
 public class IntArray {
-    private int[] array;
+    private int[] internalArray;
 
     public IntArray(int size) throws IntArrayException {
         if(size < 0) {
             throw new IntArrayException("You can't make an array with negative size");
         }
-        this.array = new int[size];
+        this.internalArray = new int[size];
     }
 
     public IntArray(int... elems) {
-        this.array = Arrays.copyOf(elems, elems.length);
+        this.internalArray = Arrays.copyOf(elems, elems.length);
     }
 
     public int length() {
-        return array.length;
+        return internalArray.length;
     }
 
     public int getElement(int index) throws IntArrayException {
         if(!checkIndex(index)) {
             throw new IntArrayException("Index " + index +   " is wrong");
         }
-        return array[index];
+        return internalArray[index];
     }
 
     public void setElement(int index, int value) throws IntArrayException {
         if(!checkIndex(index)) {
             throw new IntArrayException("Index " + index +   " is wrong");
         }
-        array[index] = value;
+        internalArray[index] = value;
+    }
+
+    public int[] getInternalArray() {
+        return internalArray;
     }
 
     private boolean checkIndex(int index) {
-        return index >= 0 && index < array.length;
+        return index >= 0 && index < internalArray.length;
     }
 
     @Override
@@ -47,16 +51,16 @@ public class IntArray {
 
         IntArray intArray = (IntArray) o;
 
-        return Arrays.equals(array, intArray.array);
+        return Arrays.equals(internalArray, intArray.internalArray);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(array);
+        return Arrays.hashCode(internalArray);
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(array);
+        return Arrays.toString(internalArray);
     }
 }
